@@ -7,7 +7,7 @@ public class Reversi {
         Player playerWhite = new Player(Piece.WHITE_PIECE);
         // 盤面中央の4マスに黒と白の石を2つずつ置く。右上と左下が黒、左上と右下が白になるように互い違いに配置する。
         Board board = new Board();
-        board.initializeBoard();
+        // リファクタリングはあと
         System.out.println(board.getBoardState());
     }
 }
