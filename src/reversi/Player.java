@@ -1,6 +1,7 @@
 package reversi;
 
 import java.util.HashMap;
+import java.util.Scanner;
 
 /**
  * Player プレイヤーに関するデータあつかう役目
@@ -13,9 +14,13 @@ public class Player {
     }
 
     public HashMap<String, Integer> inputColumnAndRow() {
-        HashMap<String, Integer> playerInput = new HashMap<String, Integer>();
-        playerInput.put("column", 3);
-        playerInput.put("row", 5);
-        return playerInput;
+        HashMap<String, Integer> selectedRowAndColumn = new HashMap<String, Integer>();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Column: ");
+        selectedRowAndColumn.put("column", scanner.nextInt());
+        System.out.print("Row: ");
+        selectedRowAndColumn.put("row", scanner.nextInt());
+        scanner.close();
+        return selectedRowAndColumn;
     }
 }
