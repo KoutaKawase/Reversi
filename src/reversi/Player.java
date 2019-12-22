@@ -14,6 +14,8 @@ public class Player {
 
     public HashMap<String, Integer> inputColumnAndRow() {
         HashMap<String, Integer> playerInput = new HashMap<String, Integer>();
+        playerInput.put("column", 3);
+        playerInput.put("row", 5);
         return playerInput;
     }
 }
