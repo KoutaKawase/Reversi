@@ -4,3 +4,6 @@
 
 あとでやること
 ・initializeBoardのif文内のハードコードをなくす
+
+battle system内でもブランチ切ってもok
+下手でも手を動かして沢山失敗しよう！！

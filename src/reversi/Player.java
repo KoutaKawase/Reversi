@@ -1,5 +1,7 @@
 package reversi;
 
+import java.util.HashMap;
+
 /**
  * Player プレイヤーに関するデータあつかう役目
  */
@@ -8,5 +10,10 @@ public class Player {
 
     public Player(final Piece pieceColor) {
         this.pieceColor = pieceColor;
+    }
+
+    public HashMap<String, Integer> inputColumnAndRow() {
+        HashMap<String, Integer> playerInput = new HashMap<String, Integer>();
+        return playerInput;
     }
 }
