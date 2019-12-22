@@ -31,24 +31,40 @@ public class Board {
         return this.toString();
     }
 
+    // TODO: クソ密集してるので小さいメソッドに分けてリファクタリング
     public String toString() {
         String board = "";
-        // TODO: ボードを整形する
         for (int column = 0; column < MAX_BOARD_COLUMN; column++) {
+            if (column == 0) {
+                System.out.println("   0   1   2   3   4   5 ");
+                System.out.println(" +---+---+---+---+---+---+");
+            }
             for (int row = 0; row < MAX_BOARD_ROW; row++) {
                 switch (this.boardState[column][row]) {
                 case BLACK_PIECE:
-                    board += "■ ";
+                    if (row == 0) {
+                        board += column + "| ■ |";
+                        break;
+                    }
+                    board += " ■ |";
                     break;
                 case WHITE_PIECE:
-                    board += "□ ";
+                    if (row == 0) {
+                        board += column + "| □ |";
+                        break;
+                    }
+                    board += " □ |";
                     break;
                 case NONE:
-                    board += "# ";
+                    if (row == 0) {
+                        board += column + "| # |";
+                        break;
+                    }
+                    board += " # |";
                     break;
                 }
             }
-            board += "\n";
+            board += "\n +---+---+---+---+---+---+\n";
         }
         return board;
     }
