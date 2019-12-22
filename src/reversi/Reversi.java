@@ -1,5 +1,7 @@
 package reversi;
 
+import java.util.HashMap;
+
 public class Reversi {
     public static void main(String[] args) throws Exception {
         // 2人のプレイヤーがそれぞれ黒番と白番のどちらを担当するかを決める
@@ -10,6 +12,7 @@ public class Reversi {
         // リファクタリングはあと
         System.out.println(board.getBoardState());
         // 黒番、白番の順で交互に盤面の空いているマスに自分の色の石を打っていく
-        System.out.println(playerBlack.inputColumnAndRow());
+        HashMap<String, Integer> selectedRowAndColumn = playerBlack.inputColumnAndRow();
+        System.out.println(selectedRowAndColumn);
     }
 }
