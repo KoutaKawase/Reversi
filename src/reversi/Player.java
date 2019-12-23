@@ -9,11 +9,11 @@ import java.util.InputMismatchException;
  */
 public class Player {
     private final Piece pieceColor;
-    public Boolean isCurrent;
+    public Boolean isMyTurn;
 
-    public Player(Piece pieceColor, Boolean isCurrent) {
+    public Player(Piece pieceColor, Boolean isMyTurn) {
         this.pieceColor = pieceColor;
-        this.isCurrent = isCurrent;
+        this.isMyTurn = isMyTurn;
     }
 
     private Boolean isInvalidInputNumber(HashMap<String, Integer> input) {
