@@ -1,10 +1,10 @@
 package reversi;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class Reversi {
-
     private static String buildCurrentTurnMessage(Player currentPlayer) {
         if (currentPlayer.getPieceColor() == Piece.BLACK_PIECE) {
             return "現在のターン: 黒 ■";
@@ -21,8 +21,9 @@ public class Reversi {
         Player currentPlayer;
         HashMap<String, Integer> selectedRowAndColumn;
         Scanner scanner = new Scanner(System.in);
-        int index = 0;
-        while (index < 10) {
+        Boolean isGameLoopEnabled = true;
+
+        while (isGameLoopEnabled) {
             currentPlayer = playerBlack.isMyTurn ? playerBlack : playerWhite;
 
             // リファクタリングはあと
@@ -32,6 +33,16 @@ public class Reversi {
             System.out.println(buildCurrentTurnMessage(currentPlayer));
             selectedRowAndColumn = currentPlayer.inputColumnAndRow(scanner);
             board.changeBoardState(selectedRowAndColumn, board, currentPlayer);
+            for (Piece[] column : board.getBoardState()) {
+                // NONEが存在しなければ全てピースで埋まったと見なす
+                Boolean isAllFilled = Arrays.asList(column).contains(Piece.NONE);
+
+                if (!isAllFilled) {
+                    isGameLoopEnabled = false;
+                    break;
+                }
+            }
+
             if (currentPlayer == playerBlack) {
                 currentPlayer.isMyTurn = false;
                 playerWhite.isMyTurn = true;
@@ -39,8 +50,8 @@ public class Reversi {
                 currentPlayer.isMyTurn = false;
                 playerBlack.isMyTurn = true;
             }
-
         }
         scanner.close();
+        System.out.println("また遊んでね！！！");
     }
 }

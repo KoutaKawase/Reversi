@@ -24,13 +24,17 @@ public class Board {
                     continue;
                 }
 
-                boardState[column][row] = Piece.NONE;
+                boardState[column][row] = Piece.BLACK_PIECE;
             }
         }
     }
 
     public String getBoardAsString() {
         return this.toString();
+    }
+
+    public Piece[][] getBoardState() {
+        return this.boardState;
     }
 
     // TODO: クソ密集してるので小さいメソッドに分けてリファクタリング
