@@ -59,10 +59,10 @@ public class Board {
                     break;
                 case NONE:
                     if (row == 0) {
-                        board += column + "| # |";
+                        board += column + "|   |";
                         break;
                     }
-                    board += " # |";
+                    board += "   |";
                     break;
                 }
             }
