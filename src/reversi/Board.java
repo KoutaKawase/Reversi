@@ -92,8 +92,6 @@ public class Board {
             return false;
         }
 
-        this.boardState[column][row] = currentPiece;
-
         column += vectorColumn;
         row += vectorRow;
 
@@ -157,15 +155,65 @@ public class Board {
         return false;
     }
 
+    // TODO: ここらへんオーバーロードが酷いのでリファクタしたい コメントもつけて処理を理解
+    private void reverse(int column, int row, int vectorColumn, int vectorRow, Player player) {
+        Piece currentPiece = player.getPieceColor();
+
+        column += vectorColumn;
+        row += vectorRow;
+
+        while (this.boardState[column][row] != currentPiece) {
+            this.boardState[column][row] = currentPiece;
+
+            column += vectorColumn;
+            row += vectorRow;
+        }
+    }
+
+    private void reverse(int column, int row, Player player) {
+        // 右
+        if (canPutDown(column, row, 0, 1, player)) {
+            reverse(column, row, 0, 1, player);
+        }
+        // 下
+        if (canPutDown(column, row, 1, 0, player)) {
+            reverse(column, row, 1, 0, player);
+        }
+        // 左
+        if (canPutDown(column, row, 0, -1, player)) {
+            reverse(column, row, 0, -1, player);
+        }
+        // 上
+        if (canPutDown(column, row, -1, 0, player)) {
+            reverse(column, row, -1, 0, player);
+        }
+        // 右下
+        if (canPutDown(column, row, 1, 1, player)) {
+            reverse(column, row, 1, 1, player);
+        }
+        // 左上
+        if (canPutDown(column, row, -1, -1, player)) {
+            reverse(column, row, -1, -1, player);
+        }
+        // 右上
+        if (canPutDown(column, row, -1, 1, player)) {
+            reverse(column, row, -1, 1, player);
+        }
+        // 左下
+        if (canPutDown(column, row, 1, -1, player)) {
+            reverse(column, row, 1, -1, player);
+        }
+    }
+
     private void setBoardState(Integer column, Integer row, Player player) {
         // バリデーション処理を追加予定
         if (canPutDown(column, row, player)) {
             this.boardState[column][row] = player.getPieceColor();
+            reverse(column, row, player);
         }
     }
 
     public void changeBoardState(HashMap<String, Integer> input, Board board, Player player) {
         board.setBoardState(input.get("column"), input.get("row"), player);
-        System.out.println(board.getBoardState());
     }
 }

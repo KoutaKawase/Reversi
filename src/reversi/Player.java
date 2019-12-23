@@ -34,9 +34,8 @@ public class Player {
     }
 
     // TODO: 例外処理が酷いのでリファクタリングしたい
-    public HashMap<String, Integer> inputColumnAndRow() {
+    public HashMap<String, Integer> inputColumnAndRow(Scanner scanner) {
         HashMap<String, Integer> selectedRowAndColumn = new HashMap<String, Integer>();
-        Scanner scanner = new Scanner(System.in);
         try {
             System.out.print("Column: ");
             selectedRowAndColumn.put("column", scanner.nextInt());
@@ -48,8 +47,6 @@ public class Player {
         } catch (InputMismatchException e) {
             System.out.println("数字以外は入力できません");
             e.printStackTrace();
-        } finally {
-            scanner.close();
         }
 
         return selectedRowAndColumn;
