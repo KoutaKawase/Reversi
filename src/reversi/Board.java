@@ -155,6 +155,8 @@ public class Board {
         if (canPutDown(column, row, 1, -1, player)) {
             return true;
         }
+        System.out.println("置ける所がありません");
+        System.out.println("PASS");
         return false;
     }
 

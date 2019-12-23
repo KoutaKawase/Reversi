@@ -1,6 +1,7 @@
 package reversi;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -33,9 +34,10 @@ public class Reversi {
             System.out.println(buildCurrentTurnMessage(currentPlayer));
             selectedRowAndColumn = currentPlayer.inputColumnAndRow(scanner);
             board.changeBoardState(selectedRowAndColumn, board, currentPlayer);
-            for (Piece[] column : board.getBoardState()) {
+            // TODO: メソッドにうつしてリファクタ
+            for (Piece[] columnPieces : board.getBoardState()) {
                 // NONEが存在しなければ全てピースで埋まったと見なす
-                Boolean isAllFilled = Arrays.asList(column).contains(Piece.NONE);
+                Boolean isAllFilled = Arrays.asList(columnPieces).contains(Piece.NONE);
 
                 if (!isAllFilled) {
                     isGameLoopEnabled = false;
@@ -52,6 +54,20 @@ public class Reversi {
             }
         }
         scanner.close();
+        Piece[][] endTimeBoardState = board.getBoardState();
+        int blackPieceCount = 0;
+        int whitePieceCount = 0;
+        for (Piece[] columnPieces : endTimeBoardState) {
+            blackPieceCount += Collections.frequency(Arrays.asList(columnPieces), playerBlack.getPieceColor());
+            whitePieceCount += Collections.frequency(Arrays.asList(columnPieces), playerWhite.getPieceColor());
+        }
+        System.out.println("BLACK: " + blackPieceCount + "個 WHITE: " + whitePieceCount + "個");
+        if (blackPieceCount > whitePieceCount) {
+            System.out.println("WINNER: " + "黒");
+        }
+        if (whitePieceCount > blackPieceCount) {
+            System.out.println("WINNER: " + "白");
+        }
         System.out.println("また遊んでね！！！");
     }
 }
