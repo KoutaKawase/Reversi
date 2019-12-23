@@ -1,5 +1,7 @@
 package reversi;
 
+import java.util.HashMap;
+
 /**
  * Board ボードの状態を管理する役
  */
@@ -67,5 +69,14 @@ public class Board {
             board += "\n +---+---+---+---+---+---+\n";
         }
         return board;
+    }
+
+    private void setBoardState(Integer column, Integer row) {
+        this.boardState[column][row] = Piece.BLACK_PIECE;
+    }
+
+    public void changeBoardState(HashMap<String, Integer> input, Board board) {
+        board.setBoardState(input.get("column"), input.get("row"));
+        System.out.println(board.getBoardState());
     }
 }
