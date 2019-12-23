@@ -71,8 +71,53 @@ public class Board {
         return board;
     }
 
-    private Boolean canPutDown(int column, int row) {
+    private Boolean canPutDown(int column, int row, int vectorColumn, int vectorRow) {
+        System.out.println("Hello World");
         return true;
+    }
+
+    private Boolean canPutDown(int column, int row) {
+        if (column >= Board.MAX_BOARD_COLUMN || row >= Board.MAX_BOARD_ROW) {
+            return false;
+        }
+
+        if (this.boardState[column][row] != Piece.NONE) {
+            return false;
+        }
+
+        // 右
+        if (canPutDown(column, row, 0, 1)) {
+            return true;
+        }
+        // 下
+        if (canPutDown(column, row, 1, 0)) {
+            return true;
+        }
+        // 左
+        if (canPutDown(column, row, 0, -1)) {
+            return true;
+        }
+        // 上
+        if (canPutDown(column, row, -1, 0)) {
+            return true;
+        }
+        // 右下
+        if (canPutDown(column, row, 1, 1)) {
+            return true;
+        }
+        // 左上
+        if (canPutDown(column, row, -1, -1)) {
+            return true;
+        }
+        // 右上
+        if (canPutDown(column, row, -1, 1)) {
+            return true;
+        }
+        // 左下
+        if (canPutDown(column, row, 1, -1)) {
+            return true;
+        }
+        return false;
     }
 
     private void setBoardState(Integer column, Integer row, Player player) {
