@@ -77,7 +77,34 @@ public class Board {
         column += vectorColumn;
         row += vectorRow;
 
-        return true;
+        if ((column < 0 || column >= Board.MAX_BOARD_COLUMN) || (row < 0 || row >= Board.MAX_BOARD_ROW)) {
+            return false;
+        }
+
+        if (this.boardState[column][row] == currentPiece) {
+            return false;
+        }
+
+        if (this.boardState[column][row] == Piece.NONE) {
+            return false;
+        }
+
+        column += vectorColumn;
+        row += vectorRow;
+
+        while ((0 <= column && column < Board.MAX_BOARD_COLUMN) && (0 <= row && row < Board.MAX_BOARD_ROW)) {
+            if (this.boardState[column][row] == Piece.NONE) {
+                return false;
+            }
+
+            if (this.boardState[column][row] == currentPiece) {
+                return true;
+            }
+
+            column += vectorColumn;
+            row += vectorRow;
+        }
+        return false;
     }
 
     private Boolean canPutDown(int column, int row, Player player) {
