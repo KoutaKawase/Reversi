@@ -42,11 +42,12 @@ public class Player {
             System.out.print("Row: ");
             selectedRowAndColumn.put("row", scanner.nextInt());
             if (isInvalidInputNumber(selectedRowAndColumn)) {
-                throw new InputMismatchException("適切な範囲内で入力してください");
+                System.out.println("適切な範囲内の数値を入力してください");
+                System.exit(1);
             }
         } catch (InputMismatchException e) {
             System.out.println("数字以外は入力できません");
-            e.printStackTrace();
+            System.exit(1);
         }
 
         return selectedRowAndColumn;
