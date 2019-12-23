@@ -29,7 +29,7 @@ public class Board {
         }
     }
 
-    public String getBoardState() {
+    public String getBoardAsString() {
         return this.toString();
     }
 

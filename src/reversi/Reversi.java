@@ -26,7 +26,7 @@ public class Reversi {
             currentPlayer = playerBlack.isMyTurn ? playerBlack : playerWhite;
 
             // リファクタリングはあと
-            System.out.println(board.getBoardState());
+            System.out.println(board.getBoardAsString());
             // 黒番、白番の順で交互に盤面の空いているマスに自分の色の石を打っていく
 
             System.out.println(buildCurrentTurnMessage(currentPlayer));
@@ -39,6 +39,7 @@ public class Reversi {
                 currentPlayer.isMyTurn = false;
                 playerBlack.isMyTurn = true;
             }
+
         }
         scanner.close();
     }
