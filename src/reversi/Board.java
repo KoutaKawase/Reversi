@@ -71,10 +71,15 @@ public class Board {
         return board;
     }
 
+    private Boolean canPutDown(int column, int row) {
+        return true;
+    }
+
     private void setBoardState(Integer column, Integer row, Player player) {
         // バリデーション処理を追加予定
-
-        this.boardState[column][row] = player.getPieceColor();
+        if (canPutDown(column, row)) {
+            this.boardState[column][row] = player.getPieceColor();
+        }
     }
 
     public void changeBoardState(HashMap<String, Integer> input, Board board, Player player) {
