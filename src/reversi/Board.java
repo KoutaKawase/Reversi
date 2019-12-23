@@ -79,7 +79,6 @@ public class Board {
         column += vectorColumn;
         row += vectorRow;
 
-        System.out.println("column: " + column + "row: " + row + "vecCol: " + vectorColumn + "vecRow: " + vectorRow);
         if ((column < 0 || column >= Board.MAX_BOARD_COLUMN) || (row < 0 || row >= Board.MAX_BOARD_ROW)) {
             return false;
         }
