@@ -71,13 +71,14 @@ public class Board {
         return board;
     }
 
-    private void setBoardState(Integer column, Integer row) {
+    private void setBoardState(Integer column, Integer row, Player player) {
         // バリデーション処理を追加予定
-        this.boardState[column][row] = Piece.BLACK_PIECE;
+
+        this.boardState[column][row] = player.getPieceColor();
     }
 
-    public void changeBoardState(HashMap<String, Integer> input, Board board) {
-        board.setBoardState(input.get("column"), input.get("row"));
+    public void changeBoardState(HashMap<String, Integer> input, Board board, Player player) {
+        board.setBoardState(input.get("column"), input.get("row"), player);
         System.out.println(board.getBoardState());
     }
 }

@@ -14,6 +14,6 @@ public class Reversi {
         System.out.println(board.getBoardState());
         // 黒番、白番の順で交互に盤面の空いているマスに自分の色の石を打っていく
         HashMap<String, Integer> selectedRowAndColumn = currentPlayer.inputColumnAndRow();
-        board.changeBoardState(selectedRowAndColumn, board);
+        board.changeBoardState(selectedRowAndColumn, board, currentPlayer);
     }
 }

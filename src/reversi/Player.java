@@ -16,6 +16,10 @@ public class Player {
         this.isMyTurn = isMyTurn;
     }
 
+    public Piece getPieceColor() {
+        return this.pieceColor;
+    }
+
     private Boolean isInvalidInputNumber(HashMap<String, Integer> input) {
         int MAX_BOARD_COLUMN = Board.MAX_BOARD_COLUMN;
         int MAX_BOARD_ROW = Board.MAX_BOARD_ROW;
