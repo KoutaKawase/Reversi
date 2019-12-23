@@ -4,6 +4,14 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Reversi {
+
+    private static String buildCurrentTurnMessage(Player currentPlayer) {
+        if (currentPlayer.getPieceColor() == Piece.BLACK_PIECE) {
+            return "現在のターン: 黒 ■";
+        }
+        return "現在のターン: 白 □";
+    }
+
     public static void main(String[] args) throws Exception {
         // 2人のプレイヤーがそれぞれ黒番と白番のどちらを担当するかを決める
         Player playerBlack = new Player(Piece.BLACK_PIECE, true);
@@ -16,9 +24,12 @@ public class Reversi {
         int index = 0;
         while (index < 10) {
             currentPlayer = playerBlack.isMyTurn ? playerBlack : playerWhite;
+
             // リファクタリングはあと
             System.out.println(board.getBoardState());
             // 黒番、白番の順で交互に盤面の空いているマスに自分の色の石を打っていく
+
+            System.out.println(buildCurrentTurnMessage(currentPlayer));
             selectedRowAndColumn = currentPlayer.inputColumnAndRow(scanner);
             board.changeBoardState(selectedRowAndColumn, board, currentPlayer);
             if (currentPlayer == playerBlack) {
