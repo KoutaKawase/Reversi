@@ -71,12 +71,15 @@ public class Board {
         return board;
     }
 
+    // TODO: リファクタと自分で説明できるように理解したい
     private Boolean canPutDown(int column, int row, int vectorColumn, int vectorRow, Player player) {
         Piece currentPiece = player.getPieceColor();
+
         // 指定された場所へ移動
         column += vectorColumn;
         row += vectorRow;
 
+        System.out.println("column: " + column + "row: " + row + "vecCol: " + vectorColumn + "vecRow: " + vectorRow);
         if ((column < 0 || column >= Board.MAX_BOARD_COLUMN) || (row < 0 || row >= Board.MAX_BOARD_ROW)) {
             return false;
         }
@@ -89,10 +92,13 @@ public class Board {
             return false;
         }
 
+        this.boardState[column][row] = currentPiece;
+
         column += vectorColumn;
         row += vectorRow;
 
         while ((0 <= column && column < Board.MAX_BOARD_COLUMN) && (0 <= row && row < Board.MAX_BOARD_ROW)) {
+
             if (this.boardState[column][row] == Piece.NONE) {
                 return false;
             }
