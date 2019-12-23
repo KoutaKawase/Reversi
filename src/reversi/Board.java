@@ -71,12 +71,16 @@ public class Board {
         return board;
     }
 
-    private Boolean canPutDown(int column, int row, int vectorColumn, int vectorRow) {
-        System.out.println("Hello World");
+    private Boolean canPutDown(int column, int row, int vectorColumn, int vectorRow, Player player) {
+        Piece currentPiece = player.getPieceColor();
+        // 指定された場所へ移動
+        column += vectorColumn;
+        row += vectorRow;
+
         return true;
     }
 
-    private Boolean canPutDown(int column, int row) {
+    private Boolean canPutDown(int column, int row, Player player) {
         if (column >= Board.MAX_BOARD_COLUMN || row >= Board.MAX_BOARD_ROW) {
             return false;
         }
@@ -86,35 +90,35 @@ public class Board {
         }
 
         // 右
-        if (canPutDown(column, row, 0, 1)) {
+        if (canPutDown(column, row, 0, 1, player)) {
             return true;
         }
         // 下
-        if (canPutDown(column, row, 1, 0)) {
+        if (canPutDown(column, row, 1, 0, player)) {
             return true;
         }
         // 左
-        if (canPutDown(column, row, 0, -1)) {
+        if (canPutDown(column, row, 0, -1, player)) {
             return true;
         }
         // 上
-        if (canPutDown(column, row, -1, 0)) {
+        if (canPutDown(column, row, -1, 0, player)) {
             return true;
         }
         // 右下
-        if (canPutDown(column, row, 1, 1)) {
+        if (canPutDown(column, row, 1, 1, player)) {
             return true;
         }
         // 左上
-        if (canPutDown(column, row, -1, -1)) {
+        if (canPutDown(column, row, -1, -1, player)) {
             return true;
         }
         // 右上
-        if (canPutDown(column, row, -1, 1)) {
+        if (canPutDown(column, row, -1, 1, player)) {
             return true;
         }
         // 左下
-        if (canPutDown(column, row, 1, -1)) {
+        if (canPutDown(column, row, 1, -1, player)) {
             return true;
         }
         return false;
@@ -122,7 +126,7 @@ public class Board {
 
     private void setBoardState(Integer column, Integer row, Player player) {
         // バリデーション処理を追加予定
-        if (canPutDown(column, row)) {
+        if (canPutDown(column, row, player)) {
             this.boardState[column][row] = player.getPieceColor();
         }
     }
