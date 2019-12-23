@@ -37,14 +37,13 @@ public class Player {
     public HashMap<String, Integer> inputColumnAndRow(Scanner scanner) {
         HashMap<String, Integer> selectedRowAndColumn = new HashMap<String, Integer>();
         try {
-            System.out.print("Column: ");
-            selectedRowAndColumn.put("column", scanner.nextInt());
-            System.out.print("Row: ");
-            selectedRowAndColumn.put("row", scanner.nextInt());
-            if (isInvalidInputNumber(selectedRowAndColumn)) {
-                System.out.println("適切な範囲内の数値を入力してください");
-                System.exit(1);
-            }
+            do {
+                System.out.println("0~5の範囲で入力してください。");
+                System.out.print("Column: ");
+                selectedRowAndColumn.put("column", scanner.nextInt());
+                System.out.print("Row: ");
+                selectedRowAndColumn.put("row", scanner.nextInt());
+            } while (isInvalidInputNumber(selectedRowAndColumn));
         } catch (InputMismatchException e) {
             System.out.println("数字以外は入力できません");
             System.exit(1);

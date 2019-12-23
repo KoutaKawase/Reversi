@@ -24,7 +24,7 @@ public class Board {
                     continue;
                 }
 
-                boardState[column][row] = Piece.BLACK_PIECE;
+                boardState[column][row] = Piece.NONE;
             }
         }
     }
