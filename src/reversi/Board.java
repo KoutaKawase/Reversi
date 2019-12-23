@@ -72,6 +72,7 @@ public class Board {
     }
 
     private void setBoardState(Integer column, Integer row) {
+        // バリデーション処理を追加予定
         this.boardState[column][row] = Piece.BLACK_PIECE;
     }
 

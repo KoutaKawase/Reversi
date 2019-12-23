@@ -9,9 +9,11 @@ import java.util.InputMismatchException;
  */
 public class Player {
     private final Piece pieceColor;
+    public Boolean isCurrent;
 
-    public Player(final Piece pieceColor) {
+    public Player(Piece pieceColor, Boolean isCurrent) {
         this.pieceColor = pieceColor;
+        this.isCurrent = isCurrent;
     }
 
     private Boolean isInvalidInputNumber(HashMap<String, Integer> input) {
@@ -48,4 +50,5 @@ public class Player {
 
         return selectedRowAndColumn;
     }
+
 }
