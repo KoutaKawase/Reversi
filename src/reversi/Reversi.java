@@ -34,15 +34,9 @@ public class Reversi {
             System.out.println(buildCurrentTurnMessage(currentPlayer));
             selectedRowAndColumn = currentPlayer.inputColumnAndRow(scanner);
             board.changeBoardState(selectedRowAndColumn, board, currentPlayer);
-            // TODO: メソッドにうつしてリファクタ
-            for (Piece[] columnPieces : board.getBoardState()) {
-                // NONEが存在しなければ全てピースで埋まったと見なす
-                Boolean isAllFilled = Arrays.asList(columnPieces).contains(Piece.NONE);
 
-                if (!isAllFilled) {
-                    isGameLoopEnabled = false;
-                    break;
-                }
+            if (board.isAllFilled()) {
+                isGameLoopEnabled = false;
             }
 
             if (currentPlayer == playerBlack) {

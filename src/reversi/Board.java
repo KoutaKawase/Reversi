@@ -1,5 +1,6 @@
 package reversi;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -8,6 +9,7 @@ import java.util.HashMap;
 public class Board {
     public static final int MAX_BOARD_COLUMN = 6;
     public static final int MAX_BOARD_ROW = 6;
+    public static final int FINISH_PIECES_COUNT = 36;
     private Piece[][] boardState = new Piece[MAX_BOARD_COLUMN][MAX_BOARD_ROW];
 
     public Board() {
@@ -27,6 +29,22 @@ public class Board {
                 boardState[column][row] = Piece.NONE;
             }
         }
+    }
+
+    public Boolean isAllFilled() {
+        Boolean isAllFilled = false;
+        int pieceCount = 0;
+        // 全てピースを数えFINISH_PIECES_COUNTと等しければ全て埋まっていると見なす
+        for (Piece[] columnPiece : this.boardState) {
+            pieceCount += Arrays.asList(columnPiece).stream()
+                    .filter(row -> row == Piece.BLACK_PIECE || row == Piece.WHITE_PIECE).count();
+        }
+
+        if (pieceCount == Board.FINISH_PIECES_COUNT) {
+            isAllFilled = true;
+        }
+
+        return isAllFilled;
     }
 
     public String getBoardAsString() {
