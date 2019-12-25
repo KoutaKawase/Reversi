@@ -33,7 +33,7 @@ public class Player {
         return false;
     }
 
-    // TODO: 例外処理が酷いのでリファクタリングしたい
+    // TODO: おけない場所ならもう一度にする
     public HashMap<String, Integer> inputColumnAndRow(Scanner scanner) {
         HashMap<String, Integer> selectedRowAndColumn = new HashMap<String, Integer>();
         try {
